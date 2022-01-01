@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+antlr4-python3-runtime = "==4.9.3"
+pyside2 = "==5.15.2"
+shiboken2 = "==5.15.2"
+graphviz = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

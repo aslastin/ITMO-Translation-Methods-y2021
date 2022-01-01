@@ -1,0 +1,21 @@
+E -> E "\+" T { #E.val = #E[1].val + #T.val }
+   | E "-" T  { #E.val = #E[1].val - #T.val }
+   | T        { #E.val = #T.val }
+   ;
+
+T -> T "\*" P { #T.val = #T[1].val * #P.val }
+   | T "/" P  { #T.val = #T[1].val // #P.val }
+   | P        { #T.val = #P.val }
+   ;
+
+P -> F "\^" P   { #P.val = int(#F.val ** #P[1].val) }
+   | F          { #P.val = #F.val }
+   ;
+
+F -> n            { #F.val = #n.int }
+   | "\(" E "\)"  { #F.val = #E.val }
+   ;
+
+n : "[1-9][0-9]*" ;
+
+ws : "[ \n\t\r]+" => skip ;

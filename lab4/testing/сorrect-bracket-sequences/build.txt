@@ -1,0 +1,1 @@
+--start S0 --file testing/сorrect-bracket-sequences/cbs.grammar --name CBS --test --dir testing/сorrect-bracket-sequences

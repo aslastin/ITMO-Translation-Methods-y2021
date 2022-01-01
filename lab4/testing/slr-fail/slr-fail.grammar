@@ -1,0 +1,13 @@
+S -> A a B a
+   | B b A b
+   ;
+
+A -> x ;
+
+B -> x ;
+
+x : "x" ;
+a : "a" ;
+b : "b" ;
+
+ws : "[ \n\t\r]+" => skip ;

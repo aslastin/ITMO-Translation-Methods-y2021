@@ -1,0 +1,34 @@
+S -> Or(1, 0)   { #S.d = 0; #S.res = #Or.res } ;
+
+Or(d, cnt) -> And(#Or.d + 1, #Or.cnt)
+              Or_(#Or.d + 1, #And.res)
+              { #Or.res = #Or_.res } ;
+
+
+Or_(d, cnt) -> "\|" Or(#Or_.d + 1, #Or_.cnt)  { #Or_.res = #Or.res }
+             |  { #Or_.res = #Or_.cnt }
+             ;
+
+And(d, cnt) -> St(#And.d + 1, #And.cnt)
+               And_(#And.d + 1, #St.res)
+               { #And.res = #And_.res } ;
+
+And_(d, cnt) -> And(#And_.d + 1, #And_.cnt) { #And_.res = #And.res }
+               | { #And_.res = #And_.cnt }
+               ;
+
+St(d, cnt) -> C(#St.d + 1, #St.cnt)
+              St_(#St.d + 1, #C.res)
+              { #St.res = #St_.res } ;
+
+St_(d, cnt) -> "\*" St_(#St_.d + 1, #St_.cnt + 1) { #St_.res = #St_[1].res }
+             |                                    { #St_.res = #St_.cnt }
+             ;
+
+C(d, cnt) -> "\(" Or(#C.d + 1, #C.cnt) "\)" { #C.res = #Or.res }
+           | char                           { #C.res = #C.cnt }
+           ;
+
+char : "[a-z]" ;
+
+ws : "[ \n\t\r]+" => skip ;

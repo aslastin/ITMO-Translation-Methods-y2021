@@ -1,0 +1,19 @@
+Or -> Or "\|" And
+    | And
+    ;
+
+And -> And St
+     | St
+     ;
+
+St -> St "\*"
+    | C
+    ;
+
+C -> "\(" Or "\)"
+   | char
+   ;
+
+char : "[a-z]" ;
+
+ws : "[ \n\t\r]+" => skip ;

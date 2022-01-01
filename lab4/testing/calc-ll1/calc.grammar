@@ -1,0 +1,20 @@
+E -> T E_(#T.val) { #E.val = #E_.val } ;
+
+E_(acc) -> "\+" T E_(#E_.acc + #T.val) { #E_.val = #E_[1].val }
+         | "-" T E_(#E_.acc - #T.val)  { #E_.val = #E_[1].val }
+         |                             { #E_.val = #E_.acc }
+         ;
+
+T -> F T_(#F.val) { #T.val = #T_.val } ;
+
+T_(acc) -> "\*" F T_(#T_.acc * #F.val) { #T_.val = #T_[1].val }
+         | "/" F T_(#T_.acc // #F.val) { #T_.val = #T_[1].val }
+         |                             { #T_.val = #T_.acc }
+         ;
+
+F -> "\(" E "\)" { #F.val = #E.val } ;
+F -> n           { #F.val = #n.int } ;
+
+n : "[1-9][0-9]*" ;
+
+ws : "[ \n\t\r]+" => skip ;
