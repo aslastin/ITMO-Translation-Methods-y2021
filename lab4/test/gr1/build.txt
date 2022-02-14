@@ -1,0 +1,1 @@
+--start S0 --file test/gr1/gr1.grammar --name Gr1 --test --dir test/gr1

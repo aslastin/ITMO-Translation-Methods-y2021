@@ -1,1 +1,0 @@
---start Or --file testing/lab2/regexp.grammar --name Regexp --test --dir testing/lab2

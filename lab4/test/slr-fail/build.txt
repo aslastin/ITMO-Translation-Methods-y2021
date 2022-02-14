@@ -1,0 +1,1 @@
+--start S --file test/slr-fail/slr-fail.grammar --name SLRFail --test --dir test/slr-fail

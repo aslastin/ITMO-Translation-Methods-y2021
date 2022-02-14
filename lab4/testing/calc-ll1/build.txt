@@ -1,1 +1,0 @@
---start E --file testing/calc-ll1/calc.grammar --name CalcLL1 --test --dir testing/calc-ll1

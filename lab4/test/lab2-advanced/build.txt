@@ -1,0 +1,1 @@
+--start S --file test/lab2-advanced/regexp-advanced.grammar --name RegexpAdvanced --test --dir test/lab2-advanced

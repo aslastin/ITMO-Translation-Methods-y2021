@@ -1,1 +1,3 @@
 ((abc * b|a) * ab(aa|b*) b)**
+
+(a|b**)cd

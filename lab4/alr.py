@@ -23,7 +23,7 @@ def initInputStream(file):
         return FileStream(file)
 
 
-def createDirectory():
+def createDirectory(directory):
     if not os.path.exists(directory):
         try:
             os.makedirs(directory)
@@ -37,18 +37,18 @@ if __name__ == '__main__':
     parser.add_argument("--start", type=str, help="name of the starting nterminal")
     parser.add_argument("--file", default=None, type=str, help="file with grammar")
     parser.add_argument("--name", default="Res", type=str, help="name of the grammar")
-    parser.add_argument("--test", action='store_true', help="whether generate testing code or not")
+    parser.add_argument("--test", action='store_true', help="whether generate test code or not")
     parser.add_argument("--dir", default='', type=str,
                         help="output directory, where all generated files will be stored")
 
     args = parser.parse_args()
-    start, file, grammarName, test, directory = args.start, args.file, args.name, args.test, args.dir
+    start, file, grammar_name, test, directory = args.start, args.file, args.name, args.test, args.dir
 
-    inputStream = initInputStream(file)
+    input_stream = initInputStream(file)
 
-    lexer = ALRLexer(inputStream)
-    tokenStream = CommonTokenStream(lexer)
-    parser = ALRParser(tokenStream)
+    lexer = ALRLexer(input_stream)
+    token_stream = CommonTokenStream(lexer)
+    parser = ALRParser(token_stream)
     tree = parser.start()
 
     visitor = GrammarVisitor(start)
@@ -61,9 +61,9 @@ if __name__ == '__main__':
     table = TableGenerator(visitor).generate()
 
     directory = os.path.join(os.getcwd(), directory)
-    createDirectory()
+    createDirectory(directory)
 
-    createGrammarFile(visitor, table, directory, grammarName)
+    createGrammarFile(visitor, table, directory, grammar_name)
 
     if test:
-        createTestFile(directory, grammarName)
+        createTestFile(directory, grammar_name)
