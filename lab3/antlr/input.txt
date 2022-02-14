@@ -1,0 +1,4 @@
+a, b, c, d = read<int>(), read<int>(), read<int>(), read<int>();
+println(a <= b > c < d > 25);
+
+println(a > b);
